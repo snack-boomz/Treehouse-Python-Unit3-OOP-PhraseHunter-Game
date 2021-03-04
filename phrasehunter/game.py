@@ -1,6 +1,6 @@
 import random
-from phrase import Phrase
-class Game:
+from phrasehunter.phrase import Phrase
+class Game():
 
     def __init__(self):
         self.missed = 0
@@ -17,13 +17,16 @@ class Game:
         random_phrase = self.get_random_phrase()
         print(random_phrase)
         new_phrase = Phrase(random_phrase)
+        print(new_phrase)
         
         while True:
-            user_guess = self.guesses.append(self.get_guess())
+            user_guess = self.get_guess()
+            print("User Guess: ", user_guess)
             print(self.guesses)
-            new_phrase.display_table
+            
             if new_phrase.check_letter(user_guess) == False:
                 self.missed += 1
+                print("Incorrect Guesses: ", self.missed)
                 if self.missed == 5:
                     self.game_over()
                     
