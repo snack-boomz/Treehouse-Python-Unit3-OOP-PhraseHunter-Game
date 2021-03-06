@@ -20,6 +20,12 @@ class Game():
         print(new_phrase)
         
         while True:
+            new_phrase.display()
+            
+            if new_phrase.check_complete():
+                print("You won! You have guessed the phrase!")
+                exit(0)
+
             user_guess = self.get_guess()
             print("User Guess: ", user_guess)
             print(self.guesses)
@@ -52,8 +58,22 @@ class Game():
         print("== Welcome to Phrase Hunters. ==")
 
     def get_guess(self):
-        user_guess = input("Guess a letter: ")
-        return user_guess
+        guessing = True
+        while guessing:
+        # referenced from unit 1 project
+            try:
+                user_guess = input("Guess a letter: ")
+                if len(user_guess) > 1:
+                    raise ValueError("Your guess guess is longer than a single letter. Please enter a single letter.")
+                elif user_guess.isalpha() == False:
+                    raise ValueError("Your guess is not a string/character. Please enter a string character.")
+            # raise
+            # except
+            except ValueError as err:
+                print("That guess is not valid. Please enter a valid guess.")
+                print("Error: {}".format(err))
+            else:
+                return user_guess
 
 
     def game_over(self):

@@ -51,12 +51,9 @@ class Phrase:
                 if counter == 5:
                     return False
 
-
-
-
     def check_complete(self):
-        complete = False
-        for character in self.display().display:
+        complete = True
+        for character in self.display_table:
             if character == "_":
                 complete = False
             else:
