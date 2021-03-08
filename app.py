@@ -1,3 +1,11 @@
+"""
+Python Web Development Techdegree
+Project 3 - Phrase Hunter Game
+Author: Trey Annis
+Goal: Meet All 'Exceeds Expectations' Requirements
+--------------------------------
+"""
+
 from phrasehunter.game import Game
 
 
