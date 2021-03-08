@@ -5,7 +5,14 @@ class Phrase:
     def __init__(self, phrase):
         self.phrase = phrase.lower()
         self.is_guessed = False
-        self.display_table = ["_", "_", "_", "_", "_"]
+        self.display_table = []
+
+        list_phrase = list(self.phrase)
+        for character in list_phrase:
+            if character == " ":
+                self.display_table.append(" ")
+            else:
+                self.display_table.append("_")
 
     def __str__(self):
         return self.phrase
@@ -22,6 +29,8 @@ class Phrase:
         #    for character in phrase_characters:
         #        self.display_table.append(character)
         #    self.arbitrary_value = 1
+        
+
         print(self.display_table)
         
  
@@ -29,26 +38,28 @@ class Phrase:
     def check_letter(self, guess):
         # checks to see if the letter selected by the user matches a letter in the phrase.
         phrase_characters = list(self.phrase)
-        print("check_letter method: ", phrase_characters)
-        print("Check_letter method guess: ", guess)
-        #for character in phrase_characters:
 
-        if guess == phrase_characters[0]:
-            self.display_table[0] = guess
-        if guess == phrase_characters[1]:
-            self.display_table[1] = guess
-        if guess == phrase_characters[2]:
-            self.display_table[2] = guess
-        if guess == phrase_characters[3]:
-            self.display_table[3] = guess
-        if guess == phrase_characters[4]:
-            self.display_table[4] = guess
+        for index, character in enumerate(phrase_characters):
+            if guess == character:
+                self.display_table[index] = guess
+
+        ## don't repeat yourself -- above, not hard-coded and dynamic, not static like old code below
+        #if guess == phrase_characters[0]:
+        #    self.display_table[0] = guess
+        #if guess == phrase_characters[1]:
+        #   self.display_table[1] = guess
+        #if guess == phrase_characters[2]:
+        #    self.display_table[2] = guess
+        #if guess == phrase_characters[3]:
+        #    self.display_table[3] = guess
+        #if guess == phrase_characters[4]:
+        #    self.display_table[4] = guess
         
         counter = 0
         for character in phrase_characters:
             if guess != character:
                 counter += 1
-                if counter == 5:
+                if counter == len(phrase_characters):
                     return False
 
     def check_complete(self):
