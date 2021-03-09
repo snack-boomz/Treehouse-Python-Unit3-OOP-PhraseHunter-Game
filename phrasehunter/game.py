@@ -115,6 +115,6 @@ class Game():
 
 
     def game_over(self):
-        print("you have failed humanity.")
+        print("Game over. You have failed humanity.")
         return True
     
