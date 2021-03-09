@@ -30,8 +30,11 @@ class Phrase:
         #        self.display_table.append(character)
         #    self.arbitrary_value = 1
         
-
-        print(self.display_table)
+        # -- referenced from 
+        # https://www.freecodecamp.org/news/python-new-line-and-how-to-python-print-without-a-newline/
+        # --
+        for character in self.display_table:
+            print(character, end=" ")
         
  
 

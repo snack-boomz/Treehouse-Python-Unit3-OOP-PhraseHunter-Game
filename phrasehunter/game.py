@@ -5,7 +5,7 @@ class Game():
     def __init__(self):
         self.missed = 0
         # -- https://randomwordgenerator.com/ -- 
-        self.phrases = ["hello world", "Amazing pie", "Black cat", "Sparkling water", "large chair"]
+        self.phrases = [Phrase("hello world"), Phrase("Amazing pie"), Phrase("Black cat"), Phrase("Sparkling water"), Phrase("large chair")]
         self.active_phrase = None
         self.guesses = []
         
@@ -13,22 +13,31 @@ class Game():
     def start(self):
         # Calls the welcome method, creates the game loop, calls the get_guess method, adds the user's guess to guesses, 
         # increments the number of missed by one if the guess is incorrect, calls the game_over method.
+        
+        # Upon new game, reset values 
+        self.guesses = []
+        self.active_phrase = None
+        self.missed = 0
+        
         self.welcome()
         random_phrase = self.get_random_phrase()
-        new_phrase = Phrase(random_phrase)
+        new_phrase = random_phrase
+        new_phrase.active_phrase = random_phrase
+        
+        
         
         while True:
             new_phrase.display()
             
             if new_phrase.check_complete():
-                print("You won! You have guessed the phrase!")
+                print("\nYou won! You have guessed the phrase!")
                 # Referenced from Unit 1 Project
                 loop = 1
                 while loop:
                     play_again = input("Would you like to play again? (Y/N): ")
-                    play_again.upper()
+                    play_again = play_again.upper()
                     if play_again == 'Y':
-                        return True
+                        return play_again
                     elif play_again == 'N':
                         quit()
                     else:
@@ -51,9 +60,9 @@ class Game():
                         loop = 1
                         while loop:
                             play_again = input("Would you like to play again? (Y/N): ")
-                            play_again.upper()
+                            play_again = play_again.upper()
                             if play_again == 'Y':
-                                return True
+                                return play_again
                             elif play_again == 'N':
                                 quit()
                             else:
@@ -85,7 +94,7 @@ class Game():
         while guessing:
         # referenced from Unit 1 Project
             try:
-                user_guess = input("\nGuess a letter: ")
+                user_guess = input("\n\nGuess a letter: ")
                 if len(user_guess) > 1:
                     raise ValueError("Your guess guess is longer than a single letter. Please enter a single letter.")
                 elif user_guess.isalpha() == False:
@@ -100,7 +109,7 @@ class Game():
                 print("That guess is not valid. Please enter a valid guess.")
                 print("Error: {}".format(err))
             else:
-                return user_guess
+                return user_guess.lower()
 
 
     def game_over(self):
