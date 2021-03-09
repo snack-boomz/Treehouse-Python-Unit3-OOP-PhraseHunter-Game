@@ -39,6 +39,7 @@ class Game():
                     if play_again == 'Y':
                         return play_again
                     elif play_again == 'N':
+                        print("Be seeing you!")
                         quit()
                     else:
                         print("Please enter Y or N.")
@@ -64,6 +65,7 @@ class Game():
                             if play_again == 'Y':
                                 return play_again
                             elif play_again == 'N':
+                                print("Be seeing you!")
                                 quit()
                             else:
                                 print("Please enter Y or N.")
