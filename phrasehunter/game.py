@@ -94,7 +94,7 @@ class Game():
         while guessing:
         # referenced from Unit 1 Project
             try:
-                user_guess = input("\n\nGuess a letter: ")
+                user_guess = input("\n\nGuess a letter: ").lower()
                 if len(user_guess) > 1:
                     raise ValueError("Your guess guess is longer than a single letter. Please enter a single letter.")
                 elif user_guess.isalpha() == False:
@@ -109,7 +109,7 @@ class Game():
                 print("That guess is not valid. Please enter a valid guess.")
                 print("Error: {}".format(err))
             else:
-                return user_guess.lower()
+                return user_guess
 
 
     def game_over(self):
